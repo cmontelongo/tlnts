@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name></display-name>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>/faces/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>clienteServlet</servlet-name>
+    <servlet-class>com.talentos.servlet.clienteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>clienteServlet</servlet-name>
+    <url-pattern>/clienteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>claseServlet</servlet-name>
+    <servlet-class>com.talentos.servlet.claseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>claseServlet</servlet-name>
+    <url-pattern>/claseServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>pagoServlet</servlet-name>
+    <servlet-class>com.talentos.servlet.pagoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>pagoServlet</servlet-name>
+    <url-pattern>/pagoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>productoServlet</servlet-name>
+    <servlet-class>com.talentos.servlet.productoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>productoServlet</servlet-name>
+    <url-pattern>/productoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>maestroServlet</servlet-name>
+    <servlet-class>com.talentos.servlet.maestroServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>maestroServlet</servlet-name>
+    <url-pattern>/maestroServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>almacenServlet</servlet-name>
+    <servlet-class>com.talentos.servlet.almacenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>almacenServlet</servlet-name>
+    <url-pattern>/almacenServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>grupoServlet</servlet-name>
+    <servlet-class>com.talentos.servlet.grupoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>grupoServlet</servlet-name>
+    <url-pattern>/grupoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>salonServlet</servlet-name>
+    <servlet-class>com.talentos.servlet.salonServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>salonServlet</servlet-name>
+    <url-pattern>/salonServlet</url-pattern>
+  </servlet-mapping>
+
+
+	<!-- security-constraint>
+		<web-resource-collection>
+			<web-resource-name>All resources</web-resource-name>
+			<description>Protects all resources</description>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+
+		<auth-constraint>
+			<role-name>myrole</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-role>
+		<role-name>myrole</role-name>
+	</security-role>
+
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>Authorized access only.</realm-name>
+	</login-config -->
+ 
+ 
+</web-app>
