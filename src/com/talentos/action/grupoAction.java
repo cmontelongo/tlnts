@@ -484,7 +484,7 @@ public class grupoAction {
 				.append(" inner join grupo_cliente t3 on t1.id=t3.id_grupo")
 				.append(" inner join cliente t4 on t4.id=t3.id_cliente")
 				.append(" inner join salon t5 on t5.id=t2.id_salon")
-				.append(" where t4.estatus=1 and t3.estatus in (0,1)")
+				.append(" where t4.estatus in (0,1) and t3.estatus in (0,1)")
 				.append(" group by t1.id, t1.nombre")
 				.append(" order by t1.nombre");
 		Connection con = null;

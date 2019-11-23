@@ -283,7 +283,7 @@ public class pagoEventoAction {
 			}
 		}
 		if (evento > 0 || concepto > 0){
-			if (fecha[1].length()>0 || alumno > 0)
+			if (fecha.length > 0 && (fecha[1].length()>0 || alumno > 0))
 				query.append(" and ");
 			titulo = "CORTE POR EVENTO";
 			if (evento > 0)
@@ -665,11 +665,9 @@ public class pagoEventoAction {
 			.append("where ");
 		if (fecha.length>0) {
 			if (buscaMes) {
-				if (opcion==3) {
-					query.append(" DATE_FORMAT(t1.fecha_pago,'").append(Constantes.fechaFormato2SQL).append("') = '").append(fechaInicial).append("'");
-				} else {
-					query.append(" DATE_FORMAT(t1.fecha_pago,'").append(Constantes.fechaNacimientoSQL).append("') = '").append(fechaInicial).append("'");
-				}
+				query.append(" DATE_FORMAT(t1.fecha_pago,'").append(Constantes.fechaFormato2SQL).append("') = '").append(fechaInicial).append("'");
+			} else {
+				query.append(" DATE_FORMAT(t1.fecha_pago,'").append(Constantes.fechaNacimientoSQL).append("') = '").append(fechaInicial).append("'");
 			}
 		}
 		if (alumno > 0) {
@@ -690,7 +688,7 @@ public class pagoEventoAction {
 		}
 		query.append(" group by t1.id_evento, t1.id, t4.nombre, t2.nombre, t1.id_concepto, t3.nombre, t1.monto ")
 			.append("order by t1.id_evento ASC, t1.fecha_pago asc, t1.id");
-		System.out.println(query.toString());
+		System.out.println("q="+query.toString());
 		Connection con = null;
 		try {
 			con = coneccion.getConnection();

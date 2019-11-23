@@ -39,8 +39,8 @@
 				<label for="opcMensualidad" id="lblMensualidad">Mensualidad</label>
 				<input type="radio" name="opcReporte" id="opcEvento" value="4" onClick="verificaOpcion(this)">
 				<label for="opcEvento" id="lblEvento">Por Evento</label>
-				<input type="radio" name="opcReporte" id="opcHistorico" value="5" onClick="verificaOpcion(this)">
-				<label for="opcHistorico" id="lblHistorico">Hist&oacute;rico</label>
+				<input type="hidden" name="opcReporte" id="opcHistorico" value="5" onClick="verificaOpcion(this)">
+				<!-- label for="opcHistorico" type="hidden" id="lblHistorico">Hist&oacute;rico</label -->
 			</fieldset>
 		</td>
 	</tr>
@@ -50,8 +50,8 @@
 			<input type="hidden" id="diaId"/>
 			<input type="hidden" id="mesId"/>
 			<input type="hidden" id="anioId"/>
-			<input name="startDate" id="startDate" style="width:150px; display:none" class="date-picker" />
-			<input name="dia" id="dia" style="width:150px" class="date-picker2" />
+			<input name="startDate" id="startDate" style="width:200px; display:none" class="date-picker" />
+			<input name="dia" id="dia" style="width:250px" class="date-picker2" />
 		</td>
 		<td>
 			<label for="alumnoNombre" id="lblAlumnoNombre"><span>Alumno</span></label><br />
@@ -63,9 +63,9 @@
 		<td>
 			<fieldset>
 				<legend>Incluir pagos duplicados: </legend>
-				<input type="radio" name="opcDuplicado" id="opcDuplicado" value="si" >
+				<input type="radio" name="opcDuplicado" id="opcDuplicado" value="1" >
 				<label for="opcDuplicados" id="lblDuplicadosSi">Si</label>
-				<input type="radio" name="opcDuplicado" id="opcDuplicado" value="no" checked>
+				<input type="radio" name="opcDuplicado" id="opcDuplicado" value="0" checked>
 				<label for="opcDuplicados" id="lblDuplicadosNo">No</label>
 			</fieldset>
 		</td>
@@ -181,8 +181,8 @@ $("#selConcepto").on('selectmenuchange',function () {
     } else if (value==4){
     	$("#alumnoNombre").show();
     	$("#lblAlumnoNombre").show();
-    	$("#opcHistorico").show();
-    	$("#lblHistorico").show();
+    	//$("#opcHistorico").show();
+    	//$("#lblHistorico").show();
 		$("#listado").attr("src", "./consolidado_reporteCorte.jsp");
     }
 });
@@ -203,7 +203,13 @@ $(document).ready(function() {
 		if (opc=="1") {
 			dia = $("#diaId").val();
 		}
+		console.log("------------");
+		console.log(his);
 		var his = $('input:radio[name=opcHistorico]:checked').val();
+		if (his === undefined)
+			his = 0;
+		console.log(his);
+		console.log("------------");
 		var sel = $('#selConcepto').val();
 		var eventoId = $('#eventoId').val();
 		var evento = $('#evento').val();
@@ -217,20 +223,24 @@ $(document).ready(function() {
 		var alumno = $('#alumnoNombre').val();
 		if (alumno == "")
 			alumnoId = 0;
-		console.log("----------");
-		console.log(sel);
+		
+		var opcDuplicado = $('input:radio[name=opcDuplicado]:checked').val();
+		console.log(opcDuplicado);
+		if (opcDuplicado == "")
+			opcDuplicado = 0;
+		console.log(opcDuplicado);
 		if (sel == 1){
 			// Pagos de Mensualidades
-			$("#listado").attr("src", "./pago_reporteCorte.jsp?opc="+opc+"&dia="+dia+"&mes="+mes+"&anio="+anio+"&a="+alumnoId);
+			$("#listado").attr("src", "./pago_reporteCorte.jsp?opc="+opc+"&dia="+dia+"&mes="+mes+"&anio="+anio+"&a="+alumnoId+"&d="+opcDuplicado);
 		} else if (sel == 2) {
 			// Pago de Eventos
-			$("#listado").attr("src", "./pagoEvento_reporte.jsp?opc="+opc+"&dia="+dia+"&mes="+mes+"&anio="+anio+"&sel="+sel+"&e="+eventoId+"&c="+conceptoId+"&a="+alumnoId);
+			$("#listado").attr("src", "./pagoEvento_reporte.jsp?opc="+opc+"&dia="+dia+"&mes="+mes+"&anio="+anio+"&sel="+sel+"&e="+eventoId+"&c="+conceptoId+"&a="+alumnoId+"&d="+opcDuplicado);
 		} else if (sel == 3) {
 			// Venta de Productos / Inventario
-			$("#listado").attr("src", "./paqueteVenta_reporte.jsp?opc="+opc+"&dia="+dia+"&mes="+mes+"&anio="+anio+"&sel="+sel+"&e="+eventoId+"&c="+conceptoId+"&a="+alumnoId);
+			$("#listado").attr("src", "./paqueteVenta_reporte.jsp?opc="+opc+"&dia="+dia+"&mes="+mes+"&anio="+anio+"&sel="+sel+"&e="+eventoId+"&c="+conceptoId+"&a="+alumnoId+"&d="+opcDuplicado);
 		} else if (sel==4) {
 			// Reporte Consolidado
-			$("#listado").attr("src", "./consolidado_reporteCorte.jsp?opc="+opc+"&dia="+dia+"&mes="+mes+"&anio="+anio+"&sel="+sel+"&e="+eventoId+"&c="+conceptoId+"&a="+alumnoId+"&h="+his);
+			$("#listado").attr("src", "./consolidado_reporteCorte.jsp?opc="+opc+"&dia="+dia+"&mes="+mes+"&anio="+anio+"&sel="+sel+"&e="+eventoId+"&c="+conceptoId+"&a="+alumnoId+"&h="+his+"&d="+opcDuplicado);
 		}
 		event.preventDefault();
 	});

@@ -85,7 +85,7 @@ public class coneccion {
 		Connection conn = null;
 		try {
 		    // db parameters
-		    String url       = "jdbc:mysql://mysqlsrv:3308/talentos";
+		    String url       = "jdbc:mysql://mysqlsrv:3306/talentos";
 		    String user      = "talentos";
 		    String password  = "12345678";
 		 

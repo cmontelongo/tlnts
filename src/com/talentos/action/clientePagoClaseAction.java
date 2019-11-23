@@ -765,12 +765,14 @@ public class clientePagoClaseAction {
 	public static JSONObject obtenerTablaPagosCorte3(HashMap<String,String> params) throws ParseException{
 		int opcion = 0;
 		int alumno = 0;
+		Boolean duplicado = false;
 		String[] fecha = {};
 		opcion = getInteger(params.get("o"));
 		alumno = getInteger(params.get("a"));
 		if (params.get("f")!=null) {
 			fecha = params.get("f").split(",");
 		}
+		duplicado = getBoolean(params.get("d"));
 		Boolean buscaMes = true;
 		String fechaInicial = "";
 		JSONObject jsonFinal = new JSONObject();
@@ -810,8 +812,11 @@ public class clientePagoClaseAction {
 		} else {
 			query.append(" and DATE_FORMAT(t2.fecha_alta,'").append(Constantes.fechaNacimientoSQL).append("') = '").append(fechaInicial).append("'");
 		}
+		if (!duplicado) {
+			query.append(" and t1.forma_pago not in (1)");
+		}
 		query.append(" order by t2.fecha_alta asc, t2.id");
-		System.out.println(query.toString());
+		System.out.println("q="+query.toString());
 		Connection con = null;
 		try {
 			con = coneccion.getConnection();
@@ -873,6 +878,14 @@ public class clientePagoClaseAction {
 		}
 
 		return jsonFinal;
+	}
+
+
+	private static Boolean getBoolean(String strValor) {
+		if (strValor != null && !strValor.equals("") && strValor.equalsIgnoreCase("1") ) {
+			return true;
+		}
+		return false;
 	}
 
 }

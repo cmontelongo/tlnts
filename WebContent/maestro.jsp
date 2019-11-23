@@ -65,7 +65,7 @@ SimpleDateFormat sdf2 = new SimpleDateFormat(Constantes.fechaFormato);
 String fecha2 = sdf2.format(new Date());
 %>
 <br />
-<table style="85%" align="center">
+<table style="width:25%; margin-top:25px;" align="center">
 	<tr>
 		<td>
 			Maestro

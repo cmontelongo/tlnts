@@ -43,8 +43,8 @@
 			<input type="hidden" id="diaId"/>
 			<input type="hidden" id="mesId"/>
 			<input type="hidden" id="anioId"/>
-			<input name="startDate" id="startDate" style="width:150px; display:none" class="date-picker" />
-			<input name="dia" id="dia" style="width:150px" class="date-picker2" />
+			<input name="startDate" id="startDate" style="width:200px; display:none" class="date-picker" />
+			<input name="dia" id="dia" style="width:250px" class="date-picker2" />
 		</td>
 		<td>
 			<label for="alumnoNombre" id="lblAlumnoNombre"><span>Alumno</span></label><br />
